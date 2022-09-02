@@ -7,6 +7,8 @@ const mongoose = require("mongoose");
 app.use(cors());
 app.use(express.json());
 
+const usersRoutes = require('./routes/users');
+
 mongoose
   .connect(process.env.CONNECTION_DB, {
     useNewUrlParser: true,
@@ -15,9 +17,8 @@ mongoose
   .then(() => console.log("Connection to MongoDB is successful !"))
   .catch(() => console.log("Connection to MongoDB is failed !"));
 
-app.get("/", (req, res) => {
-  res.send("Hello API");
-});
+
+app.use('/auth', usersRoutes);
 
 app.listen(3000, () => {
   console.log("Server is running http://localhost:3000");
