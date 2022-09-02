@@ -6,13 +6,14 @@ import SignUp from "./components/SignUp";
 import LogIn from "./components/LogIn";
 import "./index.css";
 
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />}/>
-        <Route path="signup" element={<SignUp />} />
-        <Route path="login" element={<LogIn />} />
+      <Route path="/" element={<App />} />
+      <Route path="auth/signup" element={<SignUp />} />
+      <Route path="auth/login" element={<LogIn />} />
     </Routes>
   </BrowserRouter>
 );

@@ -52,6 +52,7 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 
 - [React](https://reactjs.org/)
 - [Tailwind](https://tailwindcss.com/)
+- [Autentication pages design](https://uidesigndaily.com/posts/sketch-login-log-in-authentication-mobile-day-565)
 
 ## Features
 

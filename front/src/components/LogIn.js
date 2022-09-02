@@ -22,7 +22,7 @@ const LogIn = () => {
             <input className="text-xs w-full p-1 border-1 border-input rounded-md outline-none text-slate-600" type="password" placeholder="Enter your password" />
           </div>
           <button className="block bg-gradient-to-r from-sky-500 to-indigo-500 w-full text-white text-xs p-2 rounded-md">LOGIN</button>
-          <Link to="/signup">
+          <Link to="/auth/signup">
           <button className="block mx-auto text-auth-btn text-xs">SIGN UP</button>
           </Link>
         </form>

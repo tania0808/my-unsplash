@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 app.use(cors());
 app.use(express.json());
 
-const usersRoutes = require('./routes/users');
+const usersRoutes = require('./routes/Users');
 
 mongoose
   .connect(process.env.CONNECTION_DB, {
