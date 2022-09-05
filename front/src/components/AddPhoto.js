@@ -1,6 +1,33 @@
-import React from "react";
+import React, { useState} from "react";
+import axios from "axios";
 
 const AddPhoto = ({ handleClose }) => {
+    const localStorageData = localStorage.getItem('token')
+    const [photo, setPhoto] = useState({
+        label: "",
+        photoUrl: "",
+      });
+    
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setPhoto((prevState) => ({
+          ...prevState,
+          [name]: value,
+        }));
+      };
+    
+      const addPhoto = async (e) => {
+        e.preventDefault();
+    
+        axios.post("http://localhost:3000", photo, {
+            headers: {
+              accessToken: localStorageData
+            }}).then((response) => {
+            if (response.status === 200) {
+                handleClose();
+          }
+        });
+      };
   return (
     <div className="fixed top-0 inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center  ">
       <div className="bg-white w-2/3 max-w-sm h-fit rounded-md p-3 ">
@@ -19,8 +46,8 @@ const AddPhoto = ({ handleClose }) => {
             <input
               className="text-xs w-full p-1 mt-1 border-1 border-input rounded-md outline-none text-slate-600"
               type="text"
-              //value={}
-              //onChange={handleChange}
+              value={photo.label}
+              onChange={handleChange}
               name="label"
             />
           </div>
@@ -32,16 +59,16 @@ const AddPhoto = ({ handleClose }) => {
             <input
               className="text-xs w-full p-1 mt-1 border-1 border-input rounded-md outline-none text-slate-600"
               type="text"
-              //value={}
-              //onChange={handleChange}
-              name="url"
+              value={photo.photoUrl}
+              onChange={handleChange}
+              name="photoUrl"
             />
           </div>
         </form>
 
         <div className="flex justify-end">
-          <button onClick={handleClose} className="text-xs pr-6 text-grey">Cancel</button>
-          <button className="bg-add-btn text-white font-bold text-xs h-[35px] p-2 rounded-md">
+          <button  onClick={handleClose} className="text-xs pr-6 text-grey">Cancel</button>
+          <button onClick={addPhoto} type="submit" className="bg-add-btn text-white font-bold text-xs h-[35px] p-2 rounded-md">
             Add a photo
           </button>
         </div>
