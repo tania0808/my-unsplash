@@ -22,3 +22,9 @@ exports.addPhoto = async(req, res) => {
     // SEND AN ERROR
     catch(err){ res.status(400).send("err") }
 }
+
+exports.getAllphotos = async (req, res) => {
+    Photo.find({ userId: req.auth.id})
+    .then( photos => res.status(200).json(photos))
+    .catch(err => res.status(400).json({ err }))
+}
