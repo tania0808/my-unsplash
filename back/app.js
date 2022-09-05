@@ -8,6 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 const usersRoutes = require('./routes/Users');
+const photoRoutes = require('./routes/Photos');
 
 mongoose
   .connect(process.env.CONNECTION_DB, {
@@ -19,6 +20,7 @@ mongoose
 
 
 app.use('/auth', usersRoutes);
+app.use('/', photoRoutes);
 
 app.listen(3000, () => {
   console.log("Server is running http://localhost:3000");

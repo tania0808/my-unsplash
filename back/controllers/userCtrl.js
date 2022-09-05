@@ -24,8 +24,10 @@ exports.userSignUp = async  (req, res) => {
         await user.save();
         const userCreated = await User.findOne({ email: user.email });
 
-        const accessToken = jwt.sign({ id: userCreated.id, name: userCreated.name}, process.env.TOKEN_SECRET_KEY);
+        const accessToken = jwt.sign({ id: userCreated._id, name: userCreated.name}, process.env.TOKEN_SECRET_KEY);
         
+        res.header('accessToken', accessToken);
+
         res.send({
             token: accessToken,
             userName: userCreated.name
@@ -48,7 +50,8 @@ exports.userLogIn = async (req, res) => {
     if(!validPass) return res.status(400).send({ message: 'Invalid password !'});
 
     // CREATE AND ASIGN A TOKEN
-    const token = jwt.sign({ _id: userExists._id }, process.env.TOKEN_SECRET_KEY)
-    res.send({ userId: userExists._id, token: token });
+    const token = jwt.sign({ id: userExists._id }, process.env.TOKEN_SECRET_KEY)
+    res.header('accessToken', token);
+    res.send({ userId: userExists._id, token: token, name: userExists.name });
     
 }
