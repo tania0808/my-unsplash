@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import NavBar from "./components/NavBar";
 import AddPhoto from "./components/AddPhoto";
+import Gallerie from "./components/Gallerie";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -25,6 +26,7 @@ function App() {
       <NavBar show={show} handleClose={handleClose} handleShow={handleShow} />
       <h1>Hello, you are on the home page</h1>
       {show && <AddPhoto handleClose={handleClose}/>}
+      <Gallerie/>
     </div>
   );
 }
