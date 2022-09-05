@@ -24,7 +24,7 @@ const LogIn = () => {
     axios.post("http://localhost:3000/auth/login", user).then((response) => {
       if (response.status === 200) {
         localStorage.setItem("token", response.data.token);
-        localStorage.setItem("name", response.data.userName);
+        localStorage.setItem("name", response.data.name);
         navigate("/");
         console.log(response);
       }

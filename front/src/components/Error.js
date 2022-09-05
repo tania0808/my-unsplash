@@ -2,7 +2,7 @@ import React from 'react';
 
 const Error = () => {
     return (
-        <div>
+        <div className='text-'>
             not logged in !!!!!!
         </div>
     );
