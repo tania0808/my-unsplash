@@ -12,6 +12,7 @@ exports.addPhoto = async(req, res) => {
     console.log(photo);
     try {
         await photo.save();
+
         const photoCreated = await Photo.findOne({ label: photo.label });
 
         res.send({
@@ -20,7 +21,7 @@ exports.addPhoto = async(req, res) => {
     }
 
     // SEND AN ERROR
-    catch(err){ res.status(400).send("err") }
+    catch(err){ res.status(400).send(allPhotos) }
 }
 
 exports.getAllphotos = async (req, res) => {
