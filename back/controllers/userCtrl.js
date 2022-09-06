@@ -50,7 +50,7 @@ exports.userLogIn = async (req, res) => {
     if(!validPass) return res.status(400).send({ message: 'Invalid password !'});
 
     // CREATE AND ASIGN A TOKEN
-    const token = jwt.sign({ id: userExists._id }, process.env.TOKEN_SECRET_KEY)
+    const token = jwt.sign({ id: userExists._id }, process.env.TOKEN_SECRET_KEY);
     res.header('accessToken', token);
     res.send({ userId: userExists._id, token: token, name: userExists.name });
     

@@ -1,32 +1,45 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { deleteItem } from "../store/store";
 
 const DeletePhoto = ({id, toggleDelete }) => {
   const localStorageData = localStorage.getItem("token");
 
-  const [password, setPassword] = useState("");
-
   const dispatch = useDispatch();
+  const [password, setPassword] = useState("");
+  const [data, setData] = useState({
+    id: id,
+    password: "",
+  });
 
-  const photosGal = useSelector((state) => state.photos.value);
+const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
-  const deletePhoto = async (e, id) => {
+  const deletePhoto = async (e) => {
     e.preventDefault();
 
-    console.log(id);
+    await axios
+      .delete("http://localhost:3000", {
+        headers: {
+          accessToken: localStorageData,
+        },
+        data
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          dispatch(deleteItem(id))
+        }
+      });
     toggleDelete()
-    // axios
-    //   .delete("http://localhost:3000", {
-    //     headers: {
-    //       accessToken: localStorageData,
-    //     },
-    //   })
-    //   .then((response) => {
-    //     if (response.status === 200) {
-    //     }
-    //   });
   };
+
   return (
     <div className="fixed top-0 inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50 ">
       <div className="bg-white w-2/3 max-w-sm h-fit rounded-md p-3 z-50 ">
@@ -45,8 +58,8 @@ const DeletePhoto = ({id, toggleDelete }) => {
             <input
               className="text-xs w-full p-1 mt-1 border-1 border-input rounded-md outline-none text-slate-600"
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={data.password}
+              onChange={handleChange}
               name="password"
             />
           </div>
@@ -57,7 +70,7 @@ const DeletePhoto = ({id, toggleDelete }) => {
             Cancel
           </button>
           <button
-            onClick={(e) => deletePhoto(e, id)}
+            onClick={(e) => deletePhoto(e)}
             type="submit"
             className="bg-red-500 text-white font-bold text-xs h-[35px] p-2 rounded-md"
           >

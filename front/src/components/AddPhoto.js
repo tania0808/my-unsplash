@@ -1,39 +1,43 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { addPhoto, photoAdded } from '../store/store';
-import { useDispatch, useSelector } from 'react-redux'
-const AddPhoto = ({ handleClose }) => {
-    const localStorageData = localStorage.getItem('token')
-    const photosGal = useSelector((state) => state.photos.value);
+import { addItem } from "../store/store";
 
-    const [photo, setPhoto] = useState({
-        label: "",
-        photoUrl: "",
-    });
-    const dispatch = useDispatch();
-    
-    
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setPhoto((prevState) => ({
-          ...prevState,
-          [name]: value,
-        }));
-      };
-    
-      const addPhoto = async (e) => {
-        e.preventDefault();
-    
-        axios.post("http://localhost:3000", photo, {
-            headers: {
-              accessToken: localStorageData
-            }}).then((response) => {
-            if (response.status === 200) {
-                handleClose();
-                dispatch(photoAdded(response.data.newPhoto) )
-          }
-        });
-      };
+import { useDispatch, useSelector } from "react-redux";
+const AddPhoto = ({ handleClose }) => {
+  const localStorageData = localStorage.getItem("token");
+  const photosGal = useSelector((state) => state.photos.value);
+
+  const [photo, setPhoto] = useState({
+    label: "",
+    photoUrl: "",
+  });
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setPhoto((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const addPhoto = async (e) => {
+    e.preventDefault();
+
+    axios
+      .post("http://localhost:3000", photo, {
+        headers: {
+          accessToken: localStorageData,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          handleClose();
+          dispatch(addItem(response.data.newPhoto));
+        }
+      });
+  };
   return (
     <div className="fixed top-0 inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50 ">
       <div className="bg-white w-2/3 max-w-sm h-fit rounded-md p-3 ">
@@ -73,8 +77,14 @@ const AddPhoto = ({ handleClose }) => {
         </form>
 
         <div className="flex justify-end">
-          <button  onClick={handleClose} className="text-xs pr-6 text-grey">Cancel</button>
-          <button onClick={addPhoto} type="submit" className="bg-add-btn text-white font-bold text-xs h-[35px] p-2 rounded-md">
+          <button onClick={handleClose} className="text-xs pr-6 text-grey">
+            Cancel
+          </button>
+          <button
+            onClick={addPhoto}
+            type="submit"
+            className="bg-add-btn text-white font-bold text-xs h-[35px] p-2 rounded-md"
+          >
             Add a photo
           </button>
         </div>

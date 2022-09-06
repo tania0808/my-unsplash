@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { addPhoto, photoAdded } from "../store/store";
+import { fetchPhotos, photoAdded } from "../store/store";
 import { useDispatch, useSelector } from "react-redux";
 import ImageItem from "./ImageItem";
 
@@ -24,7 +24,7 @@ const Gallerie = () => {
       })
       .then((response) => {
         if (response.status === 200) {
-          dispatch(addPhoto(response.data));
+          dispatch(fetchPhotos(response.data));
         }
       });
   };
@@ -41,10 +41,7 @@ const Gallerie = () => {
         return (
           <div key={index}>
             <ImageItem {...photo} index={photo._id} />
-<<<<<<< HEAD
-=======
             {/* {isDelete && <DeletePhoto toggleDelete={toggleDelete} id={photo._id} />} */}
->>>>>>> d94cbe112dcd2077c56a1826be3256f7c508e027
           </div>
         );
       })}
