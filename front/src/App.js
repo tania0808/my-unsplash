@@ -24,7 +24,6 @@ function App() {
   return (
     <div className={`w-11/12 mx-auto mt-6 bg-opacity-30`}>
       <NavBar show={show} handleClose={handleClose} handleShow={handleShow} />
-      <h1>Hello, you are on the home page</h1>
       {show && <AddPhoto handleClose={handleClose}/>}
       <Gallerie/>
     </div>

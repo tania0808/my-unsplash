@@ -1,12 +1,16 @@
 import React, { useState} from "react";
 import axios from "axios";
-
+import { addPhoto, photoAdded } from '../store/store';
+import { useDispatch, useSelector } from 'react-redux'
 const AddPhoto = ({ handleClose }) => {
     const localStorageData = localStorage.getItem('token')
     const [photo, setPhoto] = useState({
         label: "",
         photoUrl: "",
-      });
+    });
+    const dispatch = useDispatch();
+    
+      const photosGal = useSelector((state) => state.photos.value);
     
       const handleChange = (e) => {
         const { name, value } = e.target;
@@ -25,6 +29,7 @@ const AddPhoto = ({ handleClose }) => {
             }}).then((response) => {
             if (response.status === 200) {
                 handleClose();
+                dispatch(photoAdded(photo) )
           }
         });
       };
