@@ -41,6 +41,10 @@ const Gallerie = () => {
         return (
           <div key={index}>
             <ImageItem {...photo} index={photo._id} />
+<<<<<<< HEAD
+=======
+            {/* {isDelete && <DeletePhoto toggleDelete={toggleDelete} id={photo._id} />} */}
+>>>>>>> d94cbe112dcd2077c56a1826be3256f7c508e027
           </div>
         );
       })}
