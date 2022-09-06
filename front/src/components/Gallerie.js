@@ -3,7 +3,6 @@ import axios from "axios";
 import { addPhoto, photoAdded } from "../store/store";
 import { useDispatch, useSelector } from "react-redux";
 import ImageItem from "./ImageItem";
-import DeletePhoto from "./DeletePhoto";
 
 const Gallerie = () => {
   const localStorageData = localStorage.getItem("token");
@@ -15,7 +14,6 @@ const Gallerie = () => {
   useEffect(() => {
     getPhotos();
   }, []);
-
 
   const getPhotos = async () => {
     await axios
@@ -33,14 +31,18 @@ const Gallerie = () => {
 
   console.log(photosGal);
 
+  if(photosGal.length === 0) {
+    return <h1 className="mt-10">Your list is empty ! Feel free to add you favourite photos 😉</h1>
+  }
+
   return (
     <div className="masonry-md sm:masonry-sm xs:masonry xs:flex xs:flex-col xs:items-center mt-10 z-0 relative">
       {photosGal.map((photo, index) => {
-          return <div key={index}>
-              <ImageItem {...photo} index={index}/>
-        {/* {isDelete && <DeletePhoto toggleDelete={toggleDelete} id={photo._id} />} */}
+        return (
+          <div key={index}>
+            <ImageItem {...photo} index={photo._id} />
           </div>
-        
+        );
       })}
     </div>
   );

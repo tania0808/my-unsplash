@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DeletePhoto from "./DeletePhoto";
 
-const ImageItem = ({ _id, photoUrl, label}) => {
+const ImageItem = ({ id, photoUrl, label, index}) => {
 
     const [isDelete, setIsDelete] = useState(false);
 
@@ -24,11 +24,11 @@ const ImageItem = ({ _id, photoUrl, label}) => {
           src={photoUrl}
           alt={label}
         />
-        <p className="z-10 font-semibold opacity-0 group-hover:opacity-100 transition ease-in-out duration-500 text-sm text-white absolute left-4 bottom-2 ">
+        <p className="capitalize z-10 font-semibold opacity-0 group-hover:opacity-100 transition ease-in-out duration-500 text-sm text-white absolute left-4 bottom-2 ">
           {label}
         </p>
       </div>
-      {isDelete && <DeletePhoto toggleDelete={toggleDelete} id={_id} />}
+      {isDelete && <DeletePhoto toggleDelete={toggleDelete} id={index} />}
     </div>
   );
 };
