@@ -34,7 +34,7 @@ const AddPhoto = ({ handleClose }) => {
         });
       };
   return (
-    <div className="fixed top-0 inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center  ">
+    <div className="fixed top-0 inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50 ">
       <div className="bg-white w-2/3 max-w-sm h-fit rounded-md p-3 ">
         <div className="flex justify-between">
           <h1>Add a new photo</h1>

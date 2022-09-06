@@ -5,6 +5,14 @@ module.exports = {
   ],
   theme: {
     extend: {
+      animation: {
+        shine: "shine 1s",
+      },
+      keyframes: {
+        shine: {
+          "100%": { left: "125%" },
+        },
+      },
       fontSize: {
         'xxs': '.6rem'
       },
@@ -38,7 +46,7 @@ module.exports = {
   
         'lg': {'max': '1023px'},
         // => @media (max-width: 1023px) { ... }
-  
+        'min-md': {'min': '967px'},
         'md': {'max': '967px'},
         // => @media (max-width: 767px) { ... }
   
@@ -46,10 +54,16 @@ module.exports = {
         
         'sm': {'max': '720px'},
         // => @media (max-width: 639px) { ... }
+        'min-xs': {'min': '569px'},
         'xs': {'max': '569px'},
         // => @media (max-width: 639px) { ... }
       },
     },
   },
   plugins: [],
+  variants: {
+    extend: {
+        display: ["group-hover"],
+    },
+},
 }
