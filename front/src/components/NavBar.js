@@ -17,8 +17,7 @@ const NavBar = ({ handleShow }) => {
     dispatch(filterItems(inputRef.current.value))
   }
 
-  const currentUser = localStorage.getItem("name");
-
+  let acronym = localStorage.getItem("name").split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'');
 
   const [modal, setModal] = useState(false);
 
@@ -27,9 +26,9 @@ const NavBar = ({ handleShow }) => {
   };
   return (
     <div className="flex justify-between items-center">
-      <div className="flex w-2/3">
+      <div className="flex w-2/3 xs:w-4/5 ">
         <Link to={"/"} className="flex mr-2">
-          <img src={logo} alt="unsplash logo" />
+          <img className="xs:w-26" src={logo} alt="unsplash logo" />
         </Link>
 
         <form className="w-2/3 relative">
@@ -38,21 +37,25 @@ const NavBar = ({ handleShow }) => {
             ref={inputRef}
             onChange={filterPhotos}
             className="w-full max-w-xs py-2 px-10 border-1 text-xs border-input rounded-md outline-none text-slate-600"
-            placeholder="Search by name"
+            placeholder="Search"
           />
           <span className="material-symbols-outlined absolute left-2 top-1 text-lg text-slate-400">
             search
           </span>
         </form>
       </div>
+      <div className="flex gap-3 items-center">
+
       <button
         onClick={handleShow}
-        className="bg-add-btn text-white font-bold text-xs h-[35px] p-2 rounded-md"
+        className="bg-add-btn text-white font-bold text-xs h-[30px] w-[30px] p-1 rounded-full flex items-center justify-center"
       >
-        Add a photo
+        <span className="material-symbols-outlined">
+add_circle
+</span>
       </button>
-      <div className="flex">
-        <p className="text-base">{currentUser}</p>
+      <div className="flex items-center">
+        <p className="text-xs text-gray-600 border-2 rounded-full p-2 xs:hidden">{acronym}</p>
         <span
           onClick={() => expandModal()}
           className="material-symbols-outlined relative cursor-pointer"
@@ -60,6 +63,7 @@ const NavBar = ({ handleShow }) => {
           expand_more
           {modal && <Modal />}
         </span>
+      </div>
       </div>
     </div>
   );

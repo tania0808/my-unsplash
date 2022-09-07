@@ -22,7 +22,7 @@ function App() {
   }, [token, navigate]);
 
   return (
-    <div className={`w-11/12 mx-auto mt-6 bg-opacity-30 `}>
+    <div className={`w-11/12 min-md:w-4/5 mx-auto mt-8 bg-opacity-30 `}>
       <NavBar show={show} handleClose={handleClose} handleShow={handleShow} />
       {show && <AddPhoto handleClose={handleClose}/>}
       <Gallerie/>
