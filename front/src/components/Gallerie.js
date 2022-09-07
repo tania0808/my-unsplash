@@ -9,7 +9,7 @@ const Gallerie = () => {
 
   const dispatch = useDispatch();
 
-  const photosGal = useSelector((state) => state.photos.value);
+  const photosGal = useSelector((state) => state.photos.filteredPhotos);
 
   useEffect(() => {
     getPhotos();

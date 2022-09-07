@@ -1,17 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/my_unsplash_logo.svg";
 import Modal from "./Modal";
+import { useDispatch, useSelector } from "react-redux";
+import { filterItems } from "../store/store";
 
-const NavBar = ({ show, handleShow, handleClose }) => {
+
+const NavBar = ({ handleShow }) => {
+  const inputRef = useRef('');
+
+
+  const dispatch = useDispatch();
+  
+
+  const filterPhotos = () => {
+    dispatch(filterItems(inputRef.current.value))
+  }
+
   const currentUser = localStorage.getItem("name");
+
 
   const [modal, setModal] = useState(false);
 
   const expandModal = () => {
     setModal(!modal);
   };
-
   return (
     <div className="flex justify-between items-center">
       <div className="flex w-2/3">
@@ -22,6 +35,8 @@ const NavBar = ({ show, handleShow, handleClose }) => {
         <form className="w-2/3 relative">
           <input
             type="search"
+            ref={inputRef}
+            onChange={filterPhotos}
             className="w-full max-w-xs py-2 px-10 border-1 text-xs border-input rounded-md outline-none text-slate-600"
             placeholder="Search by name"
           />

@@ -7,7 +7,7 @@ const DeletePhoto = ({id, toggleDelete }) => {
   const localStorageData = localStorage.getItem("token");
 
   const dispatch = useDispatch();
-  const [password, setPassword] = useState("");
+  
   const [data, setData] = useState({
     id: id,
     password: "",
