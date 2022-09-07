@@ -4,10 +4,12 @@ import React, { useEffect, useState } from "react";
 import NavBar from "./components/NavBar";
 import AddPhoto from "./components/AddPhoto";
 import Gallerie from "./components/Gallerie";
+import { useSelector } from "react-redux";
 
-function App() {
-  const token = localStorage.getItem("token");
+function App () {
+
   let navigate = useNavigate();
+  const ls = useSelector((state) => state.photos.lsData);
 
   const [show, setShow] = useState(false);
 
@@ -16,10 +18,10 @@ function App() {
 
 
   useEffect(() => {
-    if (!token) {
+    if (ls.token === null) {
       navigate("auth/login");
     }
-  }, [token, navigate]);
+  }, [ls, navigate]);
 
   return (
     <div className={`w-11/12 min-md:w-4/5 mx-auto mt-8 bg-opacity-30 `}>

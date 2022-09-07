@@ -4,7 +4,11 @@ const photoSlice = createSlice({
     name: 'photos',
     initialState: { 
         value: [] ,
-        filteredPhotos: []
+        filteredPhotos: [],
+        lsData: {
+            token: localStorage.getItem('token'),
+            user: localStorage.getItem('name')
+        }
     },
     reducers: {
         fetchPhotos: (state, action) => {
@@ -21,11 +25,14 @@ const photoSlice = createSlice({
         },
         filterItems: (state, action) => {
             state.filteredPhotos = state.value.filter(item => item.label.toLowerCase().includes(action.payload.toLowerCase()))
+        },
+        setLsData: (state, action) => {
+            state.lsData = action.payload
         }
     }
 })
 
-export const { addItem, fetchPhotos, deleteItem, filterItems } = photoSlice.actions;
+export const { addItem, fetchPhotos, deleteItem, filterItems, setLsData } = photoSlice.actions;
 
 export const store = configureStore({
     reducer: {

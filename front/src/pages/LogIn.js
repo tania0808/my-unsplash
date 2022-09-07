@@ -1,22 +1,19 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 
+import { setLsData } from "../store/store";
+import handleChange from "../utils/handleChange";
+
 const LogIn = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
 
   const createUser = async (e) => {
     e.preventDefault();
@@ -25,8 +22,14 @@ const LogIn = () => {
       if (response.status === 200) {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("name", response.data.name);
+
+        dispatch(
+          setLsData({
+            token: response.data.token,
+            user: response.data.name,
+          })
+        );
         navigate("/");
-        console.log(response);
       }
     });
   };
@@ -51,7 +54,7 @@ const LogIn = () => {
               className="text-xs w-full p-1 border-1 border-input rounded-md outline-none text-slate-600"
               type="email"
               value={user.email}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e, setUser)}
               name="email"
               placeholder="Enter your email"
             />
@@ -65,7 +68,7 @@ const LogIn = () => {
               className="text-xs w-full p-1 border-1 border-input rounded-md outline-none text-slate-600"
               type="password"
               value={user.password}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e, setUser)}
               name="password"
               placeholder="Enter your password"
             />

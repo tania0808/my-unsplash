@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { fetchPhotos, photoAdded } from "../store/store";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+
+import { fetchPhotos } from "../store/store";
 import ImageItem from "./ImageItem";
 
 const Gallerie = () => {
-  const localStorageData = localStorage.getItem("token");
-
   const dispatch = useDispatch();
 
   const photosGal = useSelector((state) => state.photos.filteredPhotos);
+  const ls = useSelector((state) => state.photos.lsData);
 
   useEffect(() => {
     getPhotos();
@@ -19,7 +19,7 @@ const Gallerie = () => {
     await axios
       .get("http://localhost:3000", {
         headers: {
-          accessToken: localStorageData,
+          accessToken: ls.token,
         },
       })
       .then((response) => {
@@ -29,10 +29,12 @@ const Gallerie = () => {
       });
   };
 
-  console.log(photosGal);
-
-  if(photosGal.length === 0) {
-    return <h1 className="mt-10">Your list is empty ! Feel free to add you favourite photos 😉</h1>
+  if (photosGal.length === 0) {
+    return (
+      <h1 className="mt-10">
+        Your list is empty ! Feel free to add you favourite photos 😉
+      </h1>
+    );
   }
 
   return (
@@ -41,7 +43,6 @@ const Gallerie = () => {
         return (
           <div key={index}>
             <ImageItem {...photo} index={photo._id} />
-            {/* {isDelete && <DeletePhoto toggleDelete={toggleDelete} id={photo._id} />} */}
           </div>
         );
       })}

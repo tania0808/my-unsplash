@@ -11,9 +11,7 @@ const validateToken = (req, res, next) => {
         req.auth = { id }
         next();
     } catch(err) {
-        const accessToken = req.header("accessToken");
-        const token = verify(accessToken, process.env.TOKEN_SECRET_KEY);
-        res.json({ message: token.id });
+        res.json({ message: err });
     }
 }
 

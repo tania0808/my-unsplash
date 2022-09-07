@@ -1,25 +1,18 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { addItem } from "../store/store";
-
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+
+import { addItem } from "../store/store";
+import handleChange from "../utils/handleChange";
+
 const AddPhoto = ({ handleClose }) => {
-  const localStorageData = localStorage.getItem("token");
-  const photosGal = useSelector((state) => state.photos.value);
+  const dispatch = useDispatch();
+  const ls = useSelector((state) => state.photos.lsData);
 
   const [photo, setPhoto] = useState({
     label: "",
     photoUrl: "",
   });
-  const dispatch = useDispatch();
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setPhoto((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
 
   const addPhoto = async (e) => {
     e.preventDefault();
@@ -27,11 +20,10 @@ const AddPhoto = ({ handleClose }) => {
     axios
       .post("http://localhost:3000", photo, {
         headers: {
-          accessToken: localStorageData,
+          accessToken: ls.token,
         },
       })
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           handleClose();
           dispatch(addItem(response.data.newPhoto));
@@ -57,7 +49,7 @@ const AddPhoto = ({ handleClose }) => {
               className="text-xs w-full p-1 mt-1 border-1 border-input rounded-md outline-none text-slate-600"
               type="text"
               value={photo.label}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e, setPhoto)}
               name="label"
             />
           </div>
@@ -70,7 +62,7 @@ const AddPhoto = ({ handleClose }) => {
               className="text-xs w-full p-1 mt-1 border-1 border-input rounded-md outline-none text-slate-600"
               type="text"
               value={photo.photoUrl}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e, setPhoto)}
               name="photoUrl"
             />
           </div>

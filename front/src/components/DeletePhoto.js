@@ -1,25 +1,19 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+
 import { deleteItem } from "../store/store";
+import handleChange from "../utils/handleChange";
 
-const DeletePhoto = ({id, toggleDelete }) => {
-  const localStorageData = localStorage.getItem("token");
-
+const DeletePhoto = ({ id, toggleDelete }) => {
   const dispatch = useDispatch();
-  
+  const ls = useSelector((state) => state.photos.lsData);
+
   const [data, setData] = useState({
     id: id,
     password: "",
   });
 
-const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
 
   const deletePhoto = async (e) => {
     e.preventDefault();
@@ -27,17 +21,16 @@ const handleChange = (e) => {
     await axios
       .delete("http://localhost:3000", {
         headers: {
-          accessToken: localStorageData,
+          accessToken: ls.token,
         },
-        data
+        data,
       })
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
-          dispatch(deleteItem(id))
+          dispatch(deleteItem(id));
+          toggleDelete();
         }
       });
-    toggleDelete()
   };
 
   return (
@@ -59,7 +52,7 @@ const handleChange = (e) => {
               className="text-xs w-full p-1 mt-1 border-1 border-input rounded-md outline-none text-slate-600"
               type="password"
               value={data.password}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e, setData)}
               name="password"
             />
           </div>
