@@ -1,6 +1,6 @@
 <!-- Please update value in the {}  -->
 
-<h1 align="center">{Your project name}</h1>
+<h1 align="center">My Unsplash</h1>
 
 <div align="center">
    Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
@@ -8,11 +8,8 @@
 
 <div align="center">
   <h3>
-    <a href="https://{your-demo-link.your-domain}">
-      Demo
-    </a>
     <span> | </span>
-    <a href="https://{your-url-to-the-solution}">
+    <a href="https://github.com/tania0808/my-unsplash">
       Solution
     </a>
     <span> | </span>
@@ -37,34 +34,35 @@
 
 ## Overview
 
-![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
-
-Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
-
-- Where can I see your demo?
-- What was your experience?
-- What have you learned/improved?
-- Your wisdom? :)
+![screenshot](screen-all.png)
 
 ### Built With
 
 <!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
 
 - [React](https://reactjs.org/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
 - [Tailwind](https://tailwindcss.com/)
 - [Material Symbols Icons](https://fonts.google.com/icons)
 - [Modal window in Tailwind](https://www.youtube.com/watch?v=kcpe4kqZaKg)
 - [Autentication pages design](https://uidesigndaily.com/posts/sketch-login-log-in-authentication-mobile-day-565)
+- [404 page design](https://uidesigndaily.com/posts/sketch-scrumbs-404-page-error-message-day-722)
 
 ## Features
+Challenge: Create my Unsplash app. Use Front-end libraries like React or Vue. Create your own API. Don’t look at the existing solution. Fulfill user stories below:
 
-<!-- List the features of your application or follow the template. Don't share the figma file here :) -->
+- User story: I can create my acoount
+- User story: I can login into my acoount
+- User story: I can see a list of photos in the masonry layout that I have added
+- User story: I can add a new photo to the list - the new photo should be on top of the list
+- User story: I can search for photos by label
+- User story: When I hover a photo, I can see a label and a delete button
+- User story: I can delete images
+- User story : When I delete an image, I can enter my password
 
-This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/rYyhwJAxMfES5jNQ9YsP) was to build an application to complete the given user stories.
 
 ## How To Use
 
-<!-- Example: -->
 
 To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 
@@ -72,23 +70,23 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 # Clone this repository
 $ git clone https://github.com/your-user-name/your-project-name
 
-# Install dependencies
+# Install dependencies both in back and front folders
 $ npm install
 
-# Run the app
+# In both back and front folders, rename .env.sample to .env and insert your data to environmental variables
+
+# Run the app in both front and back folders
 $ npm start
 ```
 
 ## Acknowledgements
 
-<!-- This section should list any articles or add-ons/plugins that helps you to complete the project. This is optional but it will help you in the future. For example: -->
 
-- [Steps to replicate a design with only HTML and CSS](https://devchallenges-blogs.web.app/how-to-replicate-design/)
-- [Node.js](https://nodejs.org/)
-- [Marked - a markdown parser](https://github.com/chjj/marked)
+- [Masonry layout](https://dev.to/kdrbek/responsive-masonry-layout-with-tailwindcss-in-2-steps-4kkj)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
 
 ## Contact
 
-- Website [your-website.com](https://{your-web-site-link})
-- GitHub [@your-username](https://{github.com/your-usermame})
-- Twitter [@your-twitter](https://{twitter.com/your-username})
+- Website [My Portfolio](https://portfolio-tania-his.netlify.app/)
+- GitHub [@tania0808](https://github.com/tania0808)
+- Linkedin [Tetiana His](https://www.linkedin.com/in/tetiana-his/)

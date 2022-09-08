@@ -22,6 +22,6 @@ mongoose
 app.use('/auth', usersRoutes);
 app.use('/', photoRoutes);
 
-app.listen(3000, () => {
-  console.log("Server is running http://localhost:3000");
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on http://localhost:${process.env.PORT}`);
 });
