@@ -5,6 +5,12 @@ import axios from "axios";
 import { deleteItem } from "../store/store";
 import handleChange from "../utils/handleChange";
 
+/**
+ * Component with modal window to delete a photo
+ * @param { id, toggleDelete } id - id of the photo
+ * @param { toggleDelete } toggleDelete - open/close modal window
+ * @returns HTML element
+ */
 const DeletePhoto = ({ id, toggleDelete }) => {
   const dispatch = useDispatch();
   const ls = useSelector((state) => state.photos.lsData);
@@ -14,7 +20,10 @@ const DeletePhoto = ({ id, toggleDelete }) => {
     password: "",
   });
 
-
+  /**
+   * Delete a chosen photo
+   * @param { Event } e
+   */
   const deletePhoto = async (e) => {
     e.preventDefault();
 

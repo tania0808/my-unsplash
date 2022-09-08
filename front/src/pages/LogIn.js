@@ -6,6 +6,10 @@ import axios from "axios";
 import { setLsData } from "../store/store";
 import handleChange from "../utils/handleChange";
 
+/**
+ * Login form
+ * @returns Login component
+ */
 const LogIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -15,7 +19,11 @@ const LogIn = () => {
     password: "",
   });
 
-  const createUser = async (e) => {
+  /**
+   * Login to user account
+   * @param {*} e
+   */
+  const login = async (e) => {
     e.preventDefault();
 
     axios.post("http://localhost:3000/auth/login", user).then((response) => {
@@ -33,17 +41,18 @@ const LogIn = () => {
       }
     });
   };
+
   return (
     <div className="flex justify-center align-center bg-light-blue w-full h-screen">
-      <div className="flex flex-col items-center bg-white w-2/3 h-fit m-auto rounded-xl">
+      <div className="flex flex-col items-center bg-white xs:w-[95%] w-2/3 max-w-[650px] h-fit m-auto rounded-xl">
         <h1 className={`mt-16 text-2xl font-semibold`}>Welcome Back ! </h1>
         <p className={`font-ligh text-xxs text-slate-500 mt-2`}>
           Unsplash App <br />
           App For Sharing Your Photos
         </p>
         <form
-          onSubmit={createUser}
-          className="flex flex-col mt-6 mb-8 w-2/3 gap-4"
+          onSubmit={login}
+          className="flex flex-col mt-6 mb-8 w-2/3 xs:w-4/5 gap-4"
         >
           <div>
             <label htmlFor="email" className="text-xs">

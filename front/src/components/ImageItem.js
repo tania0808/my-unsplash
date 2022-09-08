@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import DeletePhoto from "./DeletePhoto";
 
+/**
+ * A photo item with delete button and it's label
+ * @param { photoUrl, label, index } photo item details
+ * @returns HTML element
+ */
 const ImageItem = ({ photoUrl, label, index }) => {
   const [isDelete, setIsDelete] = useState(false);
 
+  /**
+   * open delete modal window
+   */
   const toggleDelete = () => {
     setIsDelete(!isDelete);
   };

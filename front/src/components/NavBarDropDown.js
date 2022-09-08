@@ -1,13 +1,24 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-const Modal = () => {
+import { setLsData } from "../store/store";
+
+/**
+ * DropDown window with username and log out button
+ * @returns HTML element
+ */
+const NavBarDropDown = () => {
   let navigate = useNavigate();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.photos.lsData.user);
 
+  /**
+   * Log out and redirect to login page
+   */
   const logOut = () => {
     localStorage.clear();
+    dispatch(setLsData(null));
     navigate("/auth/login");
   };
 
@@ -23,4 +34,4 @@ const Modal = () => {
   );
 };
 
-export default Modal;
+export default NavBarDropDown;

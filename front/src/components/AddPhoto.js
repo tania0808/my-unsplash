@@ -5,6 +5,11 @@ import axios from "axios";
 import { addItem } from "../store/store";
 import handleChange from "../utils/handleChange";
 
+/**
+ * A modal window to add a new photo
+ * @param { Event } handleClose - close the modal window after adding a new photo
+ * @returns HTML element of modal window with label and photo URL inputs
+ */
 const AddPhoto = ({ handleClose }) => {
   const dispatch = useDispatch();
   const ls = useSelector((state) => state.photos.lsData);
@@ -14,6 +19,10 @@ const AddPhoto = ({ handleClose }) => {
     photoUrl: "",
   });
 
+  /**
+   * Add a new photo to db and to redux state
+   * @param { Event } e prevent the behavior of the btn submit
+   */
   const addPhoto = async (e) => {
     e.preventDefault();
 

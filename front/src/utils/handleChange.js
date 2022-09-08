@@ -6,5 +6,4 @@ const handleChange = (e, setState) => {
   }));
 };
 
-
 export default handleChange;

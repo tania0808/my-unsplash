@@ -2,29 +2,40 @@ import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import Modal from "./Modal";
+import NavBarDropDown from "./NavBarDropDown";
 
 import { filterItems } from "../store/store";
 import logo from "../assets/my_unsplash_logo.svg";
 
+/**
+ * Navigation bar with logo, search bar and add photo button
+ * @param {*} param0
+ * @returns Navigation bar component
+ */
 const NavBar = ({ handleShow }) => {
-  const [modal, setModal] = useState(false);
+  const [dropDown, setDropDown] = useState(false);
 
   const inputRef = useRef("");
   const dispatch = useDispatch();
-  
+
   const ls = useSelector((state) => state.photos.lsData);
 
   let acronym = ls.user
     .split(/\s/)
     .reduce((response, word) => (response += word.slice(0, 1)), "");
 
+  /**
+   * Show photos after filtering by label
+   */
   const filterPhotos = () => {
     dispatch(filterItems(inputRef.current.value));
   };
 
-  const expandModal = () => {
-    setModal(!modal);
+  /**
+   * Open dropDown menu
+   */
+  const expandDropDown = () => {
+    setDropDown(!dropDown);
   };
 
   return (
@@ -52,7 +63,7 @@ const NavBar = ({ handleShow }) => {
           onClick={handleShow}
           className="bg-add-btn text-white font-bold text-xs h-[30px] xs:w-[30px] p-1 rounded-md xs:rounded-full flex items-center justify-center"
         >
-          <span className="xs:hidden">Add a photo</span>
+          <span className="xs:hidden px-1">Add a photo</span>
           <span className="material-symbols-outlined min-xs:hidden">
             add_circle
           </span>
@@ -62,11 +73,11 @@ const NavBar = ({ handleShow }) => {
             {acronym}
           </p>
           <span
-            onClick={() => expandModal()}
+            onClick={() => expandDropDown()}
             className="material-symbols-outlined relative cursor-pointer"
           >
             expand_more
-            {modal && <Modal />}
+            {dropDown && <NavBarDropDown />}
           </span>
         </div>
       </div>

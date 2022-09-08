@@ -7,8 +7,11 @@ import axios from "axios";
 import { setLsData } from "../store/store";
 import handleChange from "../utils/handleChange";
 
+/**
+ *
+ * @returns Sign up component
+ */
 const SignUp = () => {
-
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -18,7 +21,11 @@ const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const createUser = async (e) => {
+  /**
+   * Sign up to user account
+   * @param {*} e
+   */
+  const signUp = async (e) => {
     e.preventDefault();
 
     axios.post("http://localhost:3000/auth/signup", user).then((response) => {
@@ -30,7 +37,7 @@ const SignUp = () => {
             token: response.data.token,
             user: response.data.userName,
           })
-          );
+        );
         navigate("/");
       }
     });
@@ -38,7 +45,7 @@ const SignUp = () => {
 
   return (
     <div className="flex justify-center align-center bg-light-blue w-full h-screen">
-      <div className="flex flex-col items-center bg-white w-2/3 h-fit m-auto rounded-xl">
+      <div className="flex flex-col items-center bg-white xs:w-[95%] max-w-[650px] w-2/3 h-fit m-auto rounded-xl">
         <h1 className={`mt-16 text-2xl font-semibold`}>
           Create Your Account !{" "}
         </h1>
@@ -46,7 +53,7 @@ const SignUp = () => {
           Unsplash App <br />
           App For Sharing Your Photos
         </p>
-        <form className="flex flex-col mt-6 mb-8 w-2/3 gap-4">
+        <form className="flex flex-col mt-6 mb-8 w-2/3 xs:w-4/5 gap-4">
           <div>
             <label htmlFor="email" className="text-xs">
               Name
@@ -90,7 +97,7 @@ const SignUp = () => {
             />
           </div>
           <button
-            onClick={(e) => createUser(e)}
+            onClick={(e) => signUp(e)}
             type="button"
             className="block bg-gradient-to-r from-sky-500 to-indigo-500 w-full text-white text-xs p-2 rounded-md"
           >

@@ -1,33 +1,29 @@
 // import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
-import NavBar from "./components/NavBar";
-import AddPhoto from "./components/AddPhoto";
-import Gallerie from "./components/Gallerie";
-import { useSelector } from "react-redux";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 
-function App () {
+import IfNotLoggedIn from "./privateRoute/IfNotLoggedIn";
+import SignUp from "./pages/SignUp";
+import Home from "./pages/Home";
+import LogIn from "./pages/LogIn";
+import NotFound from "./pages/NotFound";
 
-  let navigate = useNavigate();
-  const ls = useSelector((state) => state.photos.lsData);
-
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-
-  useEffect(() => {
-    if (ls.token === null) {
-      navigate("auth/login");
-    }
-  }, [ls, navigate]);
-
+function App() {
   return (
-    <div className={`w-11/12 min-md:w-4/5 mx-auto mt-8 bg-opacity-30 `}>
-      <NavBar show={show} handleClose={handleClose} handleShow={handleShow} />
-      {show && <AddPhoto handleClose={handleClose}/>}
-      <Gallerie/>
+    <div className="App">
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <IfNotLoggedIn>
+              <Home />
+            </IfNotLoggedIn>
+          }
+        />
+        <Route path="auth/signup" element={<SignUp />} />
+        <Route path="auth/login" element={<LogIn />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }

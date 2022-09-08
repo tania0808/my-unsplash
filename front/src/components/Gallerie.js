@@ -5,6 +5,10 @@ import axios from "axios";
 import { fetchPhotos } from "../store/store";
 import ImageItem from "./ImageItem";
 
+/**
+ *
+ * @returns component with all photos in masonry layout
+ */
 const Gallerie = () => {
   const dispatch = useDispatch();
 
@@ -15,6 +19,9 @@ const Gallerie = () => {
     getPhotos();
   }, []);
 
+  /**
+   * Get all photos from the database
+   */
   const getPhotos = async () => {
     await axios
       .get("http://localhost:3000", {
