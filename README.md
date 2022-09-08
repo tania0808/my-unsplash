@@ -34,15 +34,20 @@
 
 ## Overview
 
-![screenshot](screen-all.png)
+#### Built With
+![Login Page](login-page.png)
+![Home Page](screen-all.png)
+![Add Photo Functionality](screen-add-photo.png)
+![Search Photo Functionality](screen-search.png)
 
 ### Built With
-
-<!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
 
 - [React](https://reactjs.org/)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 - [Tailwind](https://tailwindcss.com/)
+
+### Design ideas and useful links
+
 - [Material Symbols Icons](https://fonts.google.com/icons)
 - [Modal window in Tailwind](https://www.youtube.com/watch?v=kcpe4kqZaKg)
 - [Autentication pages design](https://uidesigndaily.com/posts/sketch-login-log-in-authentication-mobile-day-565)
@@ -80,7 +85,6 @@ $ npm start
 ```
 
 ## Acknowledgements
-
 
 - [Masonry layout](https://dev.to/kdrbek/responsive-masonry-layout-with-tailwindcss-in-2-steps-4kkj)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
