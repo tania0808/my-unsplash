@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import App from "./App";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
+import NotFound from "./pages/NotFound";
 
 import { store } from "./store/store";
 import "./index.css";
@@ -20,6 +21,7 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="auth/signup" element={<SignUp />} />
         <Route path="auth/login" element={<LogIn />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   </Provider>
